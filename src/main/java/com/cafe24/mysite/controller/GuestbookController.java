@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cafe24.mysite.service.GuestbookService;
 import com.cafe24.mysite.vo.GuestbookVo;
 
+
 @Controller
 @RequestMapping( "/guestbook" )
 public class GuestbookController {
@@ -31,6 +32,7 @@ public class GuestbookController {
 		model.addAttribute( "no", no );
 		return "guestbook/delete";
 	}
+
 	
 	@RequestMapping( value="/delete", method=RequestMethod.POST )
 	public String delete( @ModelAttribute GuestbookVo vo ){
@@ -38,7 +40,7 @@ public class GuestbookController {
 		guestbookService.deleteContent( vo );
 		return "redirect:/guestbook";
 	}
-	
+
 	@RequestMapping( value="/add", method=RequestMethod.POST )
 	public String add( @ModelAttribute GuestbookVo vo ) {
 		guestbookService.writeContent( vo );
