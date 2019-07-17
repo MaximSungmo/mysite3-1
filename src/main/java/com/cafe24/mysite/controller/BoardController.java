@@ -53,7 +53,7 @@ public class BoardController {
 		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
 	}
 	
-	@Auth
+//	@Auth
 	@RequestMapping( value="/modify/{no}" )	
 	public String modify( @AuthUser UserVo authUser, @PathVariable( "no" ) Long no, Model model) {
 		BoardVo boardVo = boardService.getMessage(no, authUser.getNo() );
@@ -61,7 +61,7 @@ public class BoardController {
 		return "board/modify";
 	}
 
-	@Auth
+//	@Auth
 	@RequestMapping( value="/modify", method=RequestMethod.POST )	
 	public String modify(
 		@AuthUser UserVo authUser,
@@ -75,13 +75,13 @@ public class BoardController {
 				"&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
 	}
 	
-	@Auth
+//	@Auth
 	@RequestMapping( value="/write", method=RequestMethod.GET )	
 	public String write() {
 		return "board/write";
 	}
 
-	@Auth
+//	@Auth
 	@RequestMapping( value="/write", method=RequestMethod.POST )	
 	public String write(
 		@AuthUser UserVo authUser,
@@ -101,7 +101,7 @@ public class BoardController {
 				"redirect:/board";
 	}
 
-	@Auth
+//	@Auth
 	@RequestMapping( value="/reply/{no}" )	
 	public String reply( @PathVariable( "no" ) Long no, Model model) {
 

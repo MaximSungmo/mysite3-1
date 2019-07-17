@@ -1,6 +1,5 @@
 package com.cafe24.mysite.service;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;

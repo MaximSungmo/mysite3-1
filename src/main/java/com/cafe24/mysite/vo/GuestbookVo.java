@@ -6,19 +6,15 @@ public class GuestbookVo {
 	private String password;
 	private String contents;
 	private String regDate;
-	
-	public GuestbookVo(Long no, String name, String password, String contents, String regDate) {
-		this.no=no;
-		this.name=name;
-		this.password=password;
-		this.contents=contents;
-		this.regDate=regDate;
-
+	public GuestbookVo(long l, String string, String string2, String string3, String string4) {
+		// TODO Auto-generated constructor stub
 	}
 	
 	public GuestbookVo() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
 
 	public Long getNo() {
 		

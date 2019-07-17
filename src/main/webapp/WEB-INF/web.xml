@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="
+	http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>mysite3-1</display-name>
 	<welcome-file-list>
@@ -45,7 +46,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- Dispatcher Server(Front Controller) -->	
+	<!-- spring security filter -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Dispatcher Server(Front Controller) -->
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -57,12 +68,13 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>com.cafe24.mysite.config.WebConfig</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>	
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 
 	<!-- 공통 에러 페이지 -->
 	<error-page>
@@ -73,8 +85,8 @@
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error/500.jsp</location>
 	</error-page>
-	
-	
-	
-	
+
+
+
+
 </web-app>

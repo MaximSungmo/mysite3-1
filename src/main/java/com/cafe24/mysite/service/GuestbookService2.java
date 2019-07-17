@@ -3,10 +3,8 @@ package com.cafe24.mysite.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe24.mysite.repository.GuestbookDao;
 import com.cafe24.mysite.vo.GuestbookVo;
 
 @Service

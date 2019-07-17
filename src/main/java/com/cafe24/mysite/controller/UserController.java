@@ -60,7 +60,7 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@Auth
+//	@Auth
 	@RequestMapping( value="/update", method=RequestMethod.GET )
 	public String update(
 		@AuthUser UserVo authUser,
@@ -86,11 +86,10 @@ public class UserController {
 		return "redirect:/user/update?result=success";
 	}
 
-	@RequestMapping(value="/auth", method=RequestMethod.POST)
-	public void auth(){}
-	
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public void logout(){}
+//	@RequestMapping(value="/auth", method=RequestMethod.POST)
+//	public void auth(){}
+//	@RequestMapping(value="/logout", method=RequestMethod.GET)
+//	public void logout(){}
 	
 //	@ExceptionHandler( Exception.class )
 //	public String handleUserDaoException() {

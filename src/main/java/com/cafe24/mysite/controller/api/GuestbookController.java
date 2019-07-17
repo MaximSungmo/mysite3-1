@@ -1,7 +1,6 @@
 package com.cafe24.mysite.controller.api;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.mysite.dto.JSONResult;
-import com.cafe24.mysite.service.GuestbookService2;
+import com.cafe24.mysite.service.GuestbookService;
 import com.cafe24.mysite.vo.GuestbookVo;
 
 @Controller("guestbookAPIController")
@@ -20,28 +19,32 @@ import com.cafe24.mysite.vo.GuestbookVo;
 public class GuestbookController {
 
 	@Autowired
-	private GuestbookService2 guestbookService2; 
+	private GuestbookService guestbookService; 
 	
-	@ResponseBody
-	@RequestMapping(value="/list/{no}", method=RequestMethod.GET)
-	public JSONResult list(@PathVariable(value="no") int no) {
-		List<GuestbookVo> list = guestbookService2.getContentList();
-		return JSONResult.success(list);
-	}
+//	@ResponseBody
+//	@RequestMapping(value="/list/{no}", method=RequestMethod.GET)
+//	public JSONResult list(@PathVariable(value="no") int no) {
+//		List<GuestbookVo> list = guestbookService.getContentList();
+//		return JSONResult.success(list);
+//	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/add", method=RequestMethod.POST)
+	@RequestMapping(value = "/list", method=RequestMethod.POST)
 	public JSONResult add(@RequestBody GuestbookVo guestbookVo) {
-		GuestbookVo newVo = guestbookService2.addContents(guestbookVo);
-		return JSONResult.success(newVo);
+		guestbookService.addContents(guestbookVo);
+		return JSONResult.success(guestbookVo);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/delete", method=RequestMethod.DELETE)
-	public JSONResult delete(@RequestBody Map<String, Object> map) {
-		Long no = guestbookService2.deleteContents(((Integer)map.get("no")).longValue(), (String)map.get("password"));
-		return JSONResult.success(no);
+	public JSONResult delete(@RequestBody GuestbookVo vo) {
+		boolean result = guestbookService.deleteContent(vo);
+		return JSONResult.success(result ? vo.getNo() : -1);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value ="/list/{lastNo}", method=RequestMethod.GET )
+	public JSONResult timeline(@PathVariable("lastNo") Long lastNo){
+		List<GuestbookVo> list = guestbookService.getContentList(lastNo);
+		return JSONResult.success(list);
+	}
 }

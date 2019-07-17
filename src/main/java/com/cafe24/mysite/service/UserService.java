@@ -8,7 +8,7 @@ import com.cafe24.mysite.vo.UserVo;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserDao userDao;
 	
@@ -32,4 +32,5 @@ public class UserService {
 	public boolean updateUser( UserVo userVo ) {
 		return userDao.update( userVo ) == 1;
 	}
+
 }
