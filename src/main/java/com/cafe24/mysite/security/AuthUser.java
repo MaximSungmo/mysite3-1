@@ -1,4 +1,4 @@
-package com.cafe24.security;
+package com.cafe24.mysite.security;
 
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -9,4 +9,5 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(PARAMETER)
 public @interface AuthUser {
+
 }

@@ -1,20 +1,16 @@
-package com.cafe24.security;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+package com.cafe24.mysite.security;
 
 import org.springframework.core.MethodParameter;
-import org.springframework.web.bind.support.WebArgumentResolver;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.cafe24.mysite.vo.UserVo;
-
 public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
-
+	
 
 	@Override
 	public Object resolveArgument(
@@ -23,19 +19,23 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 		NativeWebRequest webRequest,
 		WebDataBinderFactory binderFactory) throws Exception {
 		
-		if( supportsParameter(parameter) == false ) {
-			return WebArgumentResolver.UNRESOLVED;
+		Object principal = null;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("authentication : "+authentication);
+		if(authentication != null) {
+			principal = authentication.getPrincipal();
+			System.out.println("principal : "+principal);
+
 		}
-		
-		HttpServletRequest request = 
-				webRequest.getNativeRequest(HttpServletRequest.class);
-		
-		HttpSession session = request.getSession();
-		if(session == null) {
+		System.out.println("principla class : "+principal.getClass());
+		if( principal == null || principal.getClass() == String.class ) {
+			
+			System.out.println("return null : ");
 			return null;
 		}
 		
-		return session.getAttribute("authUser");
+		return principal;
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 			return false;
 		}
 		
-		// 파라미터 타입이 UserVo가 아님
-		if(parameter.getParameterType().equals( UserVo.class ) == false) {
+		// 파라미터 타입이 SecurityUser가 아님
+		if(parameter.getParameterType().equals( SecurityUser.class ) == false) {
 			return false;
 		}
 		

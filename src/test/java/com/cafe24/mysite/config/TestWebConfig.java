@@ -13,6 +13,6 @@ import com.cafe24.config.web.TestSecurityConfig;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan({"com.cafe24.mysite.controller", "com.cafe24.mysite.exception"})
-@Import({TestMVCConfig.class, TestSecurityConfig.class, TestFileuploadConfig.class, TestMessageConfig.class})
+@Import({TestMVCConfig.class, TestFileuploadConfig.class, TestMessageConfig.class})// TestSecurityConfig.class
 public class TestWebConfig {
 }

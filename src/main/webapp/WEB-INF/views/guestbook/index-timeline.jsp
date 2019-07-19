@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/assets/css/guestbook.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/timeline.css"
+	href="${pageContext.request.contextPath}/assets/css/guestbook-timeline.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

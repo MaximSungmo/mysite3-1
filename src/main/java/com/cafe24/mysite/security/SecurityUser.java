@@ -1,7 +1,6 @@
 package com.cafe24.mysite.security;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,12 +8,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class SecurityUser implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
+	// Security Field
 	private Collection<? extends GrantedAuthority> authorities;
-	private String username; // principal(biz name: email)
+	private String username; // credential(biz name: email)
 	private String password; // credential
 
 	// etc
-	private String name; // biz data
+	private Long no;
+	private String name; // domain fields(principle : 보호할 사용자 중요 데이터)
 
 	public String getName() {
 		return name;
@@ -22,6 +23,16 @@ public class SecurityUser implements UserDetails {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+
+	public Long getNo() {
+		return no;
+	}
+
+	public void setNo(Long no) {
+		this.no = no;
 	}
 
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
@@ -34,7 +45,7 @@ public class SecurityUser implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
